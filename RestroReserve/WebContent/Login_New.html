@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html ng-app="restroReserve">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Index</title>
+  <link rel="stylesheet" type="text/css" href="css/lib/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/lib/bootstrap-theme.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+
+<body class="login_body" ng-controller="LoginCtrl">
+
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+         <a class="navbar-brand" href="#">
+      <!--<img src="images/pic1.jpg" alt="Sorry! No picture" height="50px" width ="75px"/>-->
+      <span class="glyphicon glyphicon-glass" aria-hidden="true"></span>RestroReserve<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span></a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+          <li><a href="#about"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> About</a></li>
+          <li><a href="#contact"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section id="main">
+
+    <ul class="nav nav-pills nav-justified" role="tablist">
+
+      <li role="presentation" class="active" ><a href="#guestLogin" role="tab" data-toggle="tab">Guest</a></li>
+      <li role="presentation"><a href="#ownerLogin" role="tab" data-toggle="tab" >Owner</a></li>
+    </ul>
+    
+
+    <div class="tab-content">
+
+    <div role="tabpanel" class="tab-pane active" id="guestLogin">
+
+      <header>Make a Reservation</header>
+
+      <form role="form" novalidate ng-submit="addReservation()" name="loginForm">
+
+      <div class="row">
+        <div class="col-sm-6">
+        <div class="form-group">
+          <label for="reserve_date">Date</label>
+          <input type="Date" name="date" class="form-control" id="reserve_date" ng-model="new_reserve_date" placeholder="Enter date" required/>
+          <p ng-show="loginForm.date.$dirty && loginForm.date.$error.required">Date is required</p>
+        </div>
+        </div>
+      
+        <div class="col-sm-6">
+        <div class="form-group">
+          <label for="reserve_time">Time</label>
+          <input type="Time" name="time" class="form-control" id="reserve_time" placeholder="Enter time" ng-model="new_reserve_time" required />
+          <p ng-show="loginForm.time.$dirty && loginForm.time.$invalid">Time is required</p>
+        </div>
+      </div>
+      </div>
+        <div class="form-group">
+          <label for="reserve_name">Name</label>
+          <input type="text" name="custname" class="form-control" id="reserve_name" placeholder="Enter Name" ng-model="new_reserve_name" required />
+          <p ng-show="loginForm.custname.$dirty && loginForm.custname.$invalid">Name is required</p>
+        </div>
+
+        <div class="form-group">
+          <label for="reserve_phone">Phone</label>
+          <input type="text"   name="custphone" class="form-control" id="reserve_phone" placeholder="Enter Phone" ng-model="new_reserve_phone" required/>
+          <p ng-show="loginForm.custphone.$dirty && loginForm.custphone.$invalid">Phone is required</p>
+        </div>
+
+      <div class="form-group">
+        <label for="reserve_email">Email</label>
+        <input type="email"  name="custemail" class="form-control" id="reserve_email" placeholder="example@domain.com" ng-model="new_reserve_email" required/>
+        <p ng-show="loginForm.custemail.$dirty && loginForm.custemail.$error.required">Email is required</p>
+        <p ng-show="loginForm.custemail.$dirty  && loginForm.custemail.$error.email">Email is invalid</p>
+      </div>
+
+      <div class="form-group">
+        <label for="reserve_size">Party Size</label>
+        <input type="text"  name="size" class="form-control" id="reserve_size" placeholder="Enter number of guests" ng-model="new_reserve_size" required/>
+        <p ng-show="loginForm.size.$dirty && loginForm.size.$invalid">Party Size is required</p>
+      </div>
+
+      <div class="form-group">
+        <label for="reserve_spl">Special Arrangements</label>
+        <input type="textarea" name="specials" class="form-control" id="reserve_spl" placeholder="eg. Birthday, Anniversary" ng-model="new_reserve_spl" required />
+      </div>
+
+      <div class="login_button">
+        <button>Reserve</button>
+        <a href="">Change Existing Reservation</a>
+      </div>
+
+      </form>
+    </div>
+
+
+    <div role="tabpanel" class="tab-pane" id="ownerLogin">
+    <header>Owner Login</header>
+      <form role="form">
+        <div class="form-group">
+          <label for="oEmail">Email address</label>
+          <input type="email" class="form-control" id="oEmail" placeholder="Enter email">
+        </div>
+
+        <div class="form-group">
+          <label for="oPwd">Password</label>
+          <input type="password" class="form-control" id="oPwd" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-default">Login</button>
+      </form>
+
+    </div>
+    </div>
+  </section>
+
+  <script type="text/javascript" src="scripts/lib/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="scripts/lib/bootstrap.min.js"></script>
+  <script type="text/javascript" src="scripts/lib/angular.js"></script>
+  <script type="text/javascript" src="scripts/app/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html ng-app="restroReserve">
+
+<head>
+  <meta charset="utf-8">
+  <title>Owner</title>
+  <link rel="stylesheet" type="text/css" href="css/lib/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/lib/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+
+<body >
+
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+      <a class="navbar-brand" href="#">
+      <!--<img src="images/pic1.jpg" alt="Sorry! No picture" height="50px" width ="75px"/>-->
+      <span class="glyphicon glyphicon-glass" aria-hidden="true"></span>RestroReserve<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span></a>
+      </div>
+
+
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+          <li><a href="#about"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> About</a></li>
+          <li><a href="#contact"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <section name="mainOwner">
+
+    <ul class="nav nav-pills nav-stacked nav-justified" role="tablist">
+
+      <li role="presentation" class="active" ><a href="#owner_reservations" role="tab" data-toggle="tab">Reservations</a></li>
+      <li role="presentation"><a href="#owner_seating" role="tab" data-toggle="tab" >Seating</a></li>
+      <li role="presentation"><a href="#owner_profile" role="tab" data-toggle="tab" >Profile</a></li>
+      <li role="presentation"><a href="#owner_contacts" role="tab" data-toggle="tab" >Contacts</a></li>
+      <li role="presentation"><a href="#owner_appSettings" role="tab" data-toggle="tab" >App Settings</a></li>
+    </ul>
+    
+
+    <div class="tab-content">
+
+      <div ng-controller="ReserveCtrl" role="tabpanel" class="tab-pane active" id="owner_reservations">
+
+        <header>Reservation List</header>
+		<p>{{reservation[0].name}}</p>
+        <div class="table-responsive">
+          <table class="table table-condensed">
+
+            <thead>
+			<tr>
+              <th>Rsrv#</th>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Size</th>
+              <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr>
+                <td><input class="form-control"  ng-model="editNew.rsrvno" placeholder="Rsrv#" /></td>
+                <td><input class="form-control"  ng-model="editNew.name" placeholder="Name"  /></td>
+                <td><input class="form-control"  ng-model="editNew.date" placeholder="Date" /></td>
+                <td><input class="form-control"  ng-model="editNew.size" placeholder="Size" /></td>
+                <td><button ng-click="addReservations()">Add</button></td>
+              </tr>
+				
+              <tr ng-repeat="r in reservation">
+                <td>{{r.rsrvno}}</td>
+                <td>{{r.name}}</td>
+                <td>{{r.date}}</td>
+                <td>{{r.size}}</td>
+                <td><button ng-click="editReservations($index)">Edit</button><td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+       
+          <div ng-controller="SeatingCtrl" role="tabpanel" class="tab-pane" id="owner_seating">
+            <header>Seating Area</header>
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                <tr>
+                  <th>Table#</th>
+                  <th>Rsrv#</th>
+                  <th>Status</th>
+                  <th>Size</th>
+                  <th>Booking Time</th>
+                  <th>Action</th>
+                 </tr>
+                </thead>
+
+                <tbody>
+                   <tr>
+                    <td><input class="form-control" ng-model="newSeat.tableno" placeholder="Table No." /></td>
+                    <td><input class="form-control" ng-model="newSeat.reserveno" placeholder="Name"  /></td>
+                    <td><input class="form-control" ng-model="newSeat.status" placeholder="Date" /></td>
+                    <td><input class="form-control" ng-model="newSeat.size" placeholder="Size" /></td>
+                    <td><input class="form-control" ng-model="newSeat.time" placeholder="Time" /></td>
+                    <td><button ng-click="addSeating()">Add</button></td>
+                  </tr>
+                  <tr ng-repeat="s in seating">
+                    <td>{{s.tableno}}</td>
+                    <td>{{s.reserveno}}</td>
+                    <td>{{s.status}}</td>
+                    <td>{{s.size}}</td>
+                    <td>{{s.time}}</td>
+                    <td><button ng-click="editSeating($index)">Edit</button><td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+
+
+          <div role="tabpanel" class="tab-pane" id="owner_profile">
+
+            <header>Login</header>
+
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox"> Remember me
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-default">Sign in</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div role="tabpanel" class="tab-pane" id="owner_contacts">
+            <header>Contact List</header>
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>abc</td>
+                    <td>aaa@bb.com</td>
+                    <td>353-353-7272</td>
+                  </tr>
+                  <tr>
+                    <td>abc</td>
+                    <td>aaa@bb.com</td>
+                    <td>353-353-7272</td>
+                  </tr>
+                  <tr>
+                    <td>abc</td>
+                    <td>aaa@bb.com</td>
+                    <td>353-353-7272</td>
+                  </tr>
+                  <tr>
+                    <td>abc</td>
+                    <td>aaa@bb.com</td>
+                    <td>353-353-7272</td>
+                  </tr>
+                  <tr>
+                    <td>abc</td>
+                    <td>aaa@bb.com</td>
+                    <td>353-353-7272</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div role="tabpanel" class="tab-pane" id="owner_appSettings">
+            <p>Nothing here for now</p>
+          </div>
+
+        </div>
+      </section>
+
+
+
+      <script type="text/javascript" src="scripts/lib/jquery-1.11.0.min.js"></script>
+      <script type="text/javascript" src="scripts/lib/bootstrap.min.js"></script>
+      <script type="text/javascript" src="scripts/lib/angular.js"></script>
+      <script type="text/javascript" src="scripts/app/app.js"></script>
+
+    </body>
+    </html>

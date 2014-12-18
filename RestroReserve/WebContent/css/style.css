@@ -1,0 +1,84 @@
+
+body{
+	background-color: cyan;
+}
+
+section{
+	padding : 20px;
+	margin : 100px 10px;
+	max-width: 750px;
+	min-width: 200px;
+	background-color: LightSteelBlue;
+	border-radius : 4px;
+	box-shadow: 1px 1px 5px 5px grey inset;
+}
+
+
+section[name="mainOwner"] {
+	max-width: 1100px;
+
+}
+
+.tab-content{
+	padding:1.5em;
+}
+
+.nav-tabs {
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 0 10px #FFF;
+}
+
+ul.nav-tabs a {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+nav-tabs.nav-justified>.active>a, ul.nav-tabs.nav-justified>.active>a:hover {
+    border-color: #FFF;
+}
+
+header{
+	font-size: 20px;
+	margin:20px;
+	color:grey ;
+}
+
+.glyphicon{
+	color: turquoise;
+	font-size : 20px;
+}
+
+
+label,th{
+	color:grey;
+}
+
+button{
+	border-radius : 10px;
+}
+
+
+.tab-pane header {
+    font-size: 1.1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+@media (min-width: 1024px) {
+	.login_body{
+		padding: 0px 250px;
+    }
+}
+
+
+@media (min-width: 712px) {
+	.login_button{
+	padding: 0 10em;
+}
+
+@media (min-width: 512px){
+	section{
+		margin : 100px;
+	}
+}
